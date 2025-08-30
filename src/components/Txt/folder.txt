@@ -1,0 +1,167 @@
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import Image from 'next/image';
+import { json } from 'stream/consumers';
+
+const initialData = {
+  title: 'Sarvodaya Hospital Appointment System:',
+  hospitalName: 'Sarvodaya Hospital',
+  website: 'https://www.sarvodayahospital.com',
+  quote:
+    'An integrated automated appointment management system at a Sarvodaya Hospital and Research Centre helped the hospital to manage appointments effectively, giving customer’s delight, Optimized usage of staff, an effective tool for direct interaction with end customer and one step ahead for Digital India.',
+  executiveSummary:
+    'OPD appointments for patients at Sarvodaya Hospital and Research Centre were being done through walk in, telephone and e-mail requests followed by callback (from website).',
+  challenges: [
+    'Appointments requested via telephone/e-mail resulting in no shows.',
+    'High staff usage for call back and at front desk.',
+    'Loss of leads in some cases.',
+    'Long queue at front desks.',
+    'Patient frustration due to long waiting hours.',
+  ],
+  helpDetails: [
+    'Appointment via mobile app (android/ios), web and kiosk along with payment option helped Sarvodaya to get planned and confirmed appointments with assured realization of revenue upfront.',
+    'Kiosk with generate payment, opd card and receipt printing facility reduced queues at front desk.',
+    'Doctors and appointment facilitators received an advance view of appointments during the day, helped them plan their day better.',
+    'Happy Customers with low turn around time and ease of appointment and access to their reports.',
+  ],
+  patientFeatures: [
+    'to add their family members to the same number,',
+    'book appointments of family members,',
+    'auto select details of already existing members,',
+    'Update their profile and picture,',
+    'SOS phone number,',
+    'finding directions,',
+    'share app with friends,',
+    'provide feedback,',
+    'check available offers,',
+    'check their test reports,',
+    'read and update facebook and twitter feeds,',
+    'Rate the app',
+  ],
+  doctorFacilities: [
+    'To check list of patients who made the appointment by Date and time',
+    'Check patient details/reports of last 5 visits',
+    'Call patient in from his OPD room',
+    'Mark patient "seen" once complete',
+    'Inform patients of any delay in her/his arrival',
+    'Verify/Rectify Discharge summary of patients',
+    'Book Operation Theatre',
+    'Apply leaves',
+    'Inform Patients of any delays',
+  ],
+  facilitatorFacilities: [
+    'To check list of patients who requested appointment, however did not turn up and a facility to call them',
+  ],
+  results: [
+    'Customer delight: A number of customers appreciated real time transparent view of doctor/specialist availability and planned appointment system.',
+    'Marketing tool: Branding team could now easily publish latest products and services to their customer using Mobile App and website.',
+    'Reduction in Man hours: Effective use of planned and automated appointment system along with self-service kiosk reduced the need of no. of staff required on front desk to manage OPD appointments.',
+    'MIS: Enhanced management decision support system by needed MIS',
+  ],
+};
+
+export default function AppointmentSystemUI() {
+  const componentRef = useRef("");
+  const [data, setData] = useState([]);
+  const [editing, setEditing] = useState(false);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current });
+const [initialData,setInitialData] = useState([]);
+  useEffect(() => {
+    const call = async () => {
+      const res = await fetch("/api/projects")
+      if(!res.ok){
+        return
+      }
+      const data = await res.json();
+      setInitialData(data.data[0])
+      setData(data.data[0])
+    }
+    call()
+  }, [])
+  
+
+  const handleChange = (field, value) => {
+    setData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div className="font-sans bg-white text-gray-800 max-w-6xl mx-auto">
+      {!editing && data.name ? (
+        <div>
+          {/* COVER */}
+          <div className="relative h-[90vh] w-full">
+            <Image src="/coverImage.jpg" alt="Cover" layout="fill" objectFit="cover" className="z-0" />
+            <div className="absolute inset-0 bg-black/40 z-10 flex flex-col justify-center items-start p-10">
+              <h1 className="text-4xl text-white font-semibold">{data.title}</h1>
+              <div className="mt-4">
+                <Image src="/front-page/public/pexels-alex-staudinger-829197-1732414.jpg" alt="Logo" width={80} height={80} />
+                <p className="text-white mt-2 text-lg">{data.hospitalName}</p>
+              </div>
+            </div>
+          </div>
+
+          <div ref={componentRef} className="p-8">
+            <h1 className="text-4xl font-light text-gray-300 mb-4">Appointment System</h1>
+            <a href={data.website} className="text-blue-500 underline text-lg" target="_blank">{data.website}</a>
+            <p className="mt-2 text-lg">App available on Google Play Store and Apple Store</p>
+
+            <div className="bg-green-100 p-6 mt-6 rounded-md max-w-xl">
+              <p className="italic">“{data.quote}”</p>
+            </div>
+
+            <Section title="Executive Summary" content={data.executiveSummary} />
+            <ListSection title="Challenges" items={data.challenges} />
+            <ListSection title="How Product Helped" items={data.helpDetails} />
+            <ListSection title="For Patients" items={data.patientFeatures} />
+            <ListSection title="Facilities for Doctors" items={data.doctorFacilities} />
+            <ListSection title="Facilities for Appointment Facilitator" items={data.facilitatorFacilities} />
+            <ListSection title="Results, ROI and Future Plans" items={data.results} />
+
+            <footer className="mt-12 border-t pt-4 flex justify-between text-gray-500 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 rounded-full border-gray-400"></div>
+                <span>GENNEXT IT SOLUTIONS</span>
+              </div>
+              <span className="uppercase">Case Study</span>
+            </footer>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-10 mb-10">
+            <button onClick={() => setEditing(true)} className="bg-yellow-500 px-6 py-2 text-white rounded-lg">Edit</button>
+            <button onClick={handlePrint} className="bg-blue-600 px-6 py-2 text-white rounded-lg">Generate PDF</button>
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 space-y-4">
+          <textarea value={JSON.stringify(data, null, 2)} onChange={(e) => setData(JSON.parse(e.target.value))} className="w-full h-[600px] border p-4 rounded-lg font-mono" />
+          <button onClick={() => setEditing(false)} className="bg-green-600 text-white px-6 py-2 rounded-lg">Save & Preview</button>
+        {JSON.stringify(data)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Section({ title, content }) {
+  return (
+    <div className="mt-10">
+      <h2 className="text-2xl text-sky-500 font-semibold mb-2">{title}</h2>
+      <p className="text-base leading-relaxed">{content}</p>
+    </div>
+  );
+}
+
+function ListSection({ title, items }) {
+  return (
+    <div className="mt-8">
+      <h2 className="text-2xl text-sky-500 font-semibold mb-2">{title}</h2>
+      <ul className="list-disc list-inside space-y-1">
+        {items.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
