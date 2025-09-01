@@ -301,7 +301,7 @@ const handleSubmit = async (e?: React.FormEvent) => {
         <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-10 blur-2xl"></div>
       </div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto relative bg-white z-10">
         {/* Form with Glassmorphism Effect */}
         <div className="bg-transparent backdrop-blur-xl rounded-2xl shadow-2xl border border-white/30 p-4 sm:p-6 lg:p-8 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-white/20"></div>
@@ -669,7 +669,7 @@ const handleSubmit = async (e?: React.FormEvent) => {
         <div className="text-center mt-6 lg:mt-8">
           <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-lg px-3 sm:px-4 lg:px-6 py-2 rounded-full border border-white/30">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <p className="text-gray-600 text-xs sm:text-sm font-medium">© 2024  Vajra Equipments  - Powepurple by Innovation</p>
+            <p className="text-gray-600 text-xs sm:text-sm font-medium">© 2025  Vajra Equipments  - Developed by GennextIT</p>
           </div>
         </div>
       </div>
