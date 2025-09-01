@@ -77,9 +77,9 @@ const RegisterForm = ({ text, role }: RegisterFormProps) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-light-gray py-4 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-md overflow-hidden border-0 shadow-xl">
-        <div className="h-2 bg-gradient-to-r from-dark-blue to-custom-purple"></div>
+  <div className="min-h-screen flex items-center justify-center bg-[url('/loginr.png')] py-4 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full bg-white/70 max-w-md overflow-hidden border-0 shadow-xl">
+        <div className="h-2 bg-purple-700"></div>
         <CardHeader className="pb-0">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-dark-blue">Hello!</h2>
@@ -130,7 +130,7 @@ const RegisterForm = ({ text, role }: RegisterFormProps) => {
                       </div>
                     </FormControl>
                     <FormDescription className="text-left">
-                      We&aposll never share your email with anyone else
+                      We never share your email with anyone else
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -204,7 +204,7 @@ const RegisterForm = ({ text, role }: RegisterFormProps) => {
 
               <MainButton
                 text="Create Account"
-                classes="h-12 rounded-lg shadow-lg hover:shadow-xl bg-gradient-to-r from-dark-blue to-custom-purple hover:from-custom-purple hover:to-dark-blue transition-all duration-500"
+                classes="h-12 rounded-lg shadow-lg hover:shadow-xl bg-gradient-to-r bg-purple-500 hover:from-purple-300 hover:to-purple-700 transition-all duration-500"
                 width="full_width"
                 isSubmitable
                 isLoading={isPending}

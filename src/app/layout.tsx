@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SHREE BALAJI",
+  title: "VAJRA EQUIPMENTS",
   description: "We're here to Increase your Productivity",
 };
 

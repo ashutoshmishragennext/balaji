@@ -12,6 +12,7 @@ import {
   uniqueIndex,
   uuid
 } from "drizzle-orm/pg-core";
+import { array } from "zod";
 
 // ===== ENUMS =====
 export const UserRole = pgEnum("user_role", ["ADMIN", "USER"]);
@@ -54,8 +55,8 @@ export const ProjectsTable = pgTable(
     logo: text("logo"),
     status: ProjectStatus("status").default("DRAFT").notNull(),
     coverImage: text("cover_image"),
-    websiteUrl:text("website_url"),
-    bio:text("bio"),
+    websiteUrl: text("website_url"),
+    bio: text("bio"),
     slug: text("slug"), // Added for URL-friendly project identification
     userId: uuid("user_id").notNull(),
     contentJson: jsonb("content_json"),
@@ -135,4 +136,24 @@ export const PasswordResetTokenTable = pgTable(
 );
 
 
+export const FormTable = pgTable(
+  "form",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    companyName: text('company_name').notNull(),
+    personName: text('person_name').notNull(),
+    phone: text('phone').notNull(),
+    email: text('email').notNull(),
+    make: text('make'),
+    model: text('model'),
+    technicalSupport: text('technical_support').array().default([]),
+    newMachineModel: text('new_machine_model'),
+    eventName: text('event_name'),
+    remarks: text('remarks'),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+);
 
+export type Form = InferModel<typeof FormTable>;
+export type NewForm = InferModel<typeof FormTable, "insert">;

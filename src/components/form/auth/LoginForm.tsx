@@ -73,9 +73,8 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-light-gray">
-      <Card className="w-full max-w-md overflow-hidden border-0 shadow-xl">
-        <div className="h-2 bg-gradient-to-r from-dark-blue to-custom-purple"></div>
+<div className="min-h-screen  flex items-center justify-center bg-[url('/loginr.png')] bg-blur bg-cover bg-center">      <Card className="w-full max-w-md overflow-hidden bg-white/50 border-0 shadow-xl">
+        <div className="h-2 bg-purple-700"></div>
         
         {/* Logo Section */}
         <CardHeader className="pt-8 pb-2 flex flex-col items-center space-y-2">
@@ -179,7 +178,7 @@ function LoginForm() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full h-12 bg-gradient-to-r from-dark-blue to-custom-purple hover:from-custom-purple hover:to-dark-blue text-white rounded-lg font-medium transition-all duration-500 transform hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full h-12 bg-gradient-to-r bg-purple-500 hover:from-purple-400 hover:to-purple-800 text-white rounded-lg font-medium transition-all duration-500 transform hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isPending ? (
                   <span className="flex items-center justify-center">

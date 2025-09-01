@@ -67,6 +67,7 @@
     "twilio": "^5.4.5",
     "uploadthing": "^7.7.2",
     "uuid": "^11.1.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.2"
   },
   "devDependencies": {

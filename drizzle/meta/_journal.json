@@ -29,6 +29,13 @@
       "when": 1750140309124,
       "tag": "0003_pretty_famine",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1756710778598,
+      "tag": "0004_first_dragon_lord",
+      "breakpoints": true
     }
   ]
 }
