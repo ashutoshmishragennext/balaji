@@ -325,7 +325,7 @@ const handleSubmit = async (e?: React.FormEvent) => {
                   INDIA CORR EXPO 2025
                 </h1>
                 <p className="text-sm sm:text-xl lg:text-2xl font-bold text-gray-800 leading-tight">
-                  STALL NO. C-15
+                  STALL NO. A-14 
                 </p>
                 <div className="flex flex-col sm:flex-row items-end sm:justify-end gap-1 sm:gap-3 text-xs sm:text-sm text-gray-600 mt-1">
                   <div className="flex items-center">
